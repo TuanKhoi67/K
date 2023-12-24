@@ -1,0 +1,32 @@
+<form action="/toys/edit/{{ toy._id }}" method="post">
+   <h1>Edit toy</h1>
+   Toy name: <input type="text" name="name" id="" required value="{{ toy.name }}">
+   <br><br>
+   Toy image: <input type="url" name="image" id="" required value="{{ toy.image }}">
+   <img src="{{ toy.image }}" alt="" width="100" height="100">
+   Toy brand: <br>
+   <select name="brand">
+      {{#each brands }}
+      <option value="{{ _id }}"> {{ name }}</option>
+      {{/each}}
+   </select>
+   <br><br>
+   Toy types:
+   {{#equal toy.type "Scale"}}
+   <input type="radio" name="type" value="Scale" checked="true"> Scale
+   <input type="radio" name="type" value="Action"> Action
+   <input type="radio" name="type" value="Chibi"> Chibi
+   {{/equal}}
+   {{#equal toy.type "Action"}}
+   <input type="radio" name="type" value="Scale"> Scale
+   <input type="radio" name="type" value="Action" checked="true"> Action
+   <input type="radio" name="type" value="Chibi"> Chibi
+   {{/equal}}
+   {{#equal toy.type "Chibi"}}
+   <input type="radio" name="type" value="Scale" > Scale
+   <input type="radio" name="type" value="Action"> Action
+   <input type="radio" name="type" value="Chibi" checked="true"> Chibi
+   {{/equal}}
+   <br><br>
+   <input type="submit" value="Edit">
+</form>
